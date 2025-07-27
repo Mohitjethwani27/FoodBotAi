@@ -1,0 +1,29 @@
+# === Common Ignore Rules for FoodBot AI ===
+
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+
+# Build files
+dist/
+build/
+
+# IDE/editor configs
+.vscode/
+.idea/
+
+# Cache and temp
+.cache/
+.vite/
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
