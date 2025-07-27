@@ -3,7 +3,7 @@
 FoodBot AI is a smart lead management and chatbot-integrated platform built using the MERN stack with Firebase authentication and AI agent automation. This project includes:
 
 - 🔐 Authentication (login/signup)
-- 🤖 AI agent (lead extractor)
+- 🤖 AI agent (lead extractor using Gemini API)
 - 📥 Lead storage with Firebase/Firestore
 - 📡 Modular Command Processor integration
 - ⚛️ React frontend + Node.js/Express backend
@@ -18,6 +18,7 @@ FoodBotAi/
 │   ├── routes/
 │   ├── controllers/
 │   ├── config/
+│   ├── schema/
 │   └── index.js
 ├── frontend/
 │   ├── src/
@@ -31,9 +32,10 @@ FoodBotAi/
 
 ### 🔧 Prerequisites
 
-- Node.js (v16+)
+- [Node.js](https://nodejs.org/en/download/) (v16+ recommended)
 - Firebase project with Firestore enabled
-- Google Service Account (for Admin SDK access)
+- Google Service Account (Admin SDK JSON)
+- Gemini API key (or OpenAI if applicable)
 
 ---
 
@@ -102,22 +104,47 @@ npm run dev
 
 ## 🔐 Environment Variables
 
-Create a `.env` file in both backend and frontend (if required).  
-You can store sensitive values like:
+Create a `.env` file in both backend and frontend if needed.
+
+#### 👉 `backend/.env.sample`
 
 ```env
-# Example for backend .env
 PORT=5000
 JWT_SECRET=your_jwt_secret
+GEMINI_API_KEY=your_gemini_api_key
 ```
+
+Make a copy and rename it:
+
+```bash
+cp .env.sample .env
+```
+
+---
+
+## 🔥 Firestore Setup
+
+Ensure the following in your Firebase Console:
+
+- Firestore is enabled
+- Required collections like `leads`, `users` exist (or auto-create)
+
+---
+
+## 🧠 AI Agent Setup
+
+This project uses Gemini API to parse messages and extract leads.
+
+- Get your Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+- Add it to your `.env` as `GEMINI_API_KEY=your_key_here`
 
 ---
 
 ## 📌 Notes
 
-- Be sure to **never commit** your `.env` or `serviceAccount.json` files.
-- GitHub push protection is enabled to prevent leaking secrets.
-- This project is now safe to share, collaborate, and host publicly.
+- Never commit `.env` or `serviceAccount.json`
+- Use `.gitignore` to keep secrets safe
+- GitHub secret scanning is enabled for protection
 
 ---
 
@@ -130,3 +157,4 @@ Feel free to fork this repo, raise issues, or suggest improvements.
 ## 📄 License
 
 MIT License
+
